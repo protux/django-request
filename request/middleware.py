@@ -2,9 +2,9 @@
 from request import settings
 from request.models import Request
 from request.router import patterns
+from django.utils.deprecation import MiddlewareMixin
 
-
-class RequestMiddleware(object):
+class RequestMiddleware(MiddlewareMixin):
     def process_response(self, request, response):
         if request.method.lower() not in settings.VALID_METHOD_NAMES:
             return response
